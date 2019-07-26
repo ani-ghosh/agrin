@@ -57,23 +57,31 @@
 }   
 
 
-agrin_data <- function(name) {
-	
-	name <- tolower(name[1])
-	n <- nchar(name)
-	sp <- substr(name, n-1, n) == "sp"
-	name <- .setExtension(name, ".rds")
-	fn <- system.file(file.path("rds", name), package="agrin")
+.get_data <- function(name, path, ext=".rds") {
+	name <- .setExtension(name, ext)
+	fn <- system.file(file.path(path, name), package="agrin")
 	if (!(file.exists(fn))) {
 		stop(paste(name, "is not a valid data set name"))
 	}
-	x <- readRDS(fn)
+	readRDS(fn)
+}
+
+
+agrin_data <- function(name) {
+	name <- tolower(name[1])
+	n <- nchar(name)
+	x <- .get_data(name, "rds") 
+	sp <- substr(name, n-1, n) == "sp"
 	if (sp) {
 		return(x)
 	} else {
 		y <- vect(x$geom, type=x$type, atts=x$df, crs=x$crs)
 		return(y)
-	}
+	}	
 }
 
+
+ibli_data <- function(name) {
+	.get_data(name, "ibli")
+}
 
