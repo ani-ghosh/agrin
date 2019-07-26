@@ -58,12 +58,12 @@
 
 
 .get_data <- function(name, path, ext=".rds") {
-	name <- .setExtension(name, ext)
-	fn <- system.file(file.path(path, name), package="agrin")
-	if (!(file.exists(fn))) {
-		stop(paste(name, "is not a valid data set name"))
-	}
-	readRDS(fn)
+  name <- .setExtension(name, ext)
+  fn <- system.file(file.path(path, name), package="agrin")
+  if (!(file.exists(fn))) {
+    stop(paste(name, "is not a valid data set name"))
+  }
+  readRDS(fn)
 }
 
 .get_shp <- function(name, path) {
@@ -79,7 +79,7 @@
 agrin_data <- function(name) {
 	name <- tolower(name[1])
 	n <- nchar(name)
-	x <- .get_data(name, "rds") 
+	x <- .get_data(name, "rds")  
 	sp <- substr(name, n-1, n) == "sp"
 	if (sp) {
 		return(x)
