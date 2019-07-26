@@ -1,38 +1,37 @@
 \name{agrin_data}
 
 \Rdversion{1.1}
-
  
 \alias{agrin_data}
+\alias{ibli_data}
 
 
 \title{
-Get example data
+Get data
 }
 
 \description{
-Get example data
+Get data used in the examples on https://
 }
 
 \usage{
 agrin_data(name)
+ibli_data(name)
 }
 
 \arguments{
  \item{name}{data set name}
- \item{files}{filenames to download}
- \item{path}{path (folder) to save the data to}
- \item{url}{url where the data is downloaded from}
 }
 
 \value{
-A data set. Often a Spatial* object or a data.frame
+A data set. Often a Spat* object or a data.frame
 }
 
 
 
 \examples{
 marsabit <- agrin_data("marsabit")
+loss <- ibli_data("S6C_Livestock_Losses.rds")
 }
 
 
