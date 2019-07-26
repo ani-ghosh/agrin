@@ -66,6 +66,15 @@
 	readRDS(fn)
 }
 
+.get_shp <- function(name, path) {
+	name <- .setExtension(name, ".shp")
+	fn <- system.file(file.path(path, name), package="agrin")
+	if (!(file.exists(fn))) {
+		stop(paste(name, "is not a valid data set name"))
+	}
+	terra::vect(fn)
+}
+
 
 agrin_data <- function(name) {
 	name <- tolower(name[1])
@@ -82,6 +91,10 @@ agrin_data <- function(name) {
 
 
 ibli_data <- function(name) {
-	.get_data(name, "ibli")
+	if (name == "marsabit") {
+		.get_shp(name, "ibli")	
+	} else {
+		.get_data(name, "ibli")
+	}
 }
 
